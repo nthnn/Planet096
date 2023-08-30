@@ -7,7 +7,7 @@
 
 #define APPBAR_NONE         0x00
 #define APPBAR_NORMAL       0x01
-#define APPBAR_BORDER_ONLY  0x02
+#define APPBAR_LINE_BORDER  0x02
 
 #define APPBAR_ALIGN_LEFT   0x00
 #define APPBAR_ALIGN_CENTER 0x01
