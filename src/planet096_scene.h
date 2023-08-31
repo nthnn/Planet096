@@ -15,9 +15,10 @@
 #define APPBAR_ALIGN_CENTER 0x01
 #define APPBAR_ALIGN_RIGHT  0x02
 
-#define SCENE_MENU_BUTTONS  0x00
-#define SCENE_MENU_DIVIDER  0x01
-#define SCENE_MENU_PLAIN    0x02
+#define SCENE_MENU_PLAIN    0x00
+#define SCENE_MENU_BUTTONS  0x01
+#define SCENE_MENU_DIVIDER  0x02
+#define SCENE_MENU_HL_ONLY  0x03
 
 class Planet096Scene {
 public:
