@@ -7,7 +7,7 @@
 class Planet096App {
 public:
     static Adafruit_SSD1306 getI2CScreen();
-    static void start(Planet096Scene scene);
+    static void start(Planet096Scene &scene);
 };
 
 #endif

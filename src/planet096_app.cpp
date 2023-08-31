@@ -10,10 +10,9 @@ Adafruit_SSD1306 Planet096App::getI2CScreen() {
     if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))
         return NULL;
 
-    display.clearDisplay();
     return display;
 }
 
-void Planet096App::start(Planet096Scene scene) {
-    scene.render(Planet096App::getI2CScreen());
+void Planet096App::start(Planet096Scene &scene) {
+    scene.render();
 }
