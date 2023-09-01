@@ -179,19 +179,23 @@ void Planet096Scene::renderMenu() {
                 this->display.drawLine(43, 52, 43, 64, WHITE);
                 this->display.drawLine(85, 52, 85, 64, WHITE);
 
-                this->display.setTextSize(1);
-                this->display.setTextColor(WHITE);
                 this->display.setCursor(6 + ((32 - (strlen(this->menu_left) * 5)) / 2), 54);
                 this->display.println(this->menu_left);
 
-                this->display.setTextSize(1);
-                this->display.setTextColor(WHITE);
                 this->display.setCursor(48 + ((32 - (strlen(this->menu_center) * 5)) / 2), 54);
                 this->display.println(this->menu_center);
 
-                this->display.setTextSize(1);
-                this->display.setTextColor(WHITE);
                 this->display.setCursor(90 + ((32 - (strlen(this->menu_right) * 5)) / 2), 54);
+                this->display.println(this->menu_right);
+            }
+            else {
+                this->display.drawLine(0, 52, 128, 52, WHITE);
+                this->display.drawLine(64, 52, 64, 64, WHITE);
+
+                this->display.setCursor(6 + ((50 - (strlen(this->menu_left) * 5)) / 2), 54);
+                this->display.println(this->menu_left);
+
+                this->display.setCursor(70 + ((50 - (strlen(this->menu_right) * 5)) / 2), 54);
                 this->display.println(this->menu_right);
             }
 
@@ -202,19 +206,20 @@ void Planet096Scene::renderMenu() {
 
         case SCENE_MENU_PLAIN:
             if(this->menu_center != NULL) {
-                this->display.setTextSize(1);
-                this->display.setTextColor(WHITE);
                 this->display.setCursor(6 + ((32 - (strlen(this->menu_left) * 5)) / 2), 54);
                 this->display.println(this->menu_left);
 
-                this->display.setTextSize(1);
-                this->display.setTextColor(WHITE);
                 this->display.setCursor(48 + ((32 - (strlen(this->menu_center) * 5)) / 2), 54);
                 this->display.println(this->menu_center);
 
-                this->display.setTextSize(1);
-                this->display.setTextColor(WHITE);
                 this->display.setCursor(90 + ((32 - (strlen(this->menu_right) * 5)) / 2), 54);
+                this->display.println(this->menu_right);
+            }
+            else {
+                this->display.setCursor(6 + ((50 - (strlen(this->menu_left) * 5)) / 2), 54);
+                this->display.println(this->menu_left);
+
+                this->display.setCursor(70 + ((50 - (strlen(this->menu_right) * 5)) / 2), 54);
                 this->display.println(this->menu_right);
             }
 
