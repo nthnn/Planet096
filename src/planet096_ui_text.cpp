@@ -33,11 +33,20 @@ int Planet096Text::getY() {
     return this->y;
 }
 
-void Planet096Text::render(Planet096Scene &scene) const {
-    scene.render(false);
+void Planet096Text::setTextSize() {
+    this->size = size;
+    this->refresh();
+}
 
-    this->scene = scene;
-    this->has_rendered = true;
+int Planet096Text::getTextSize() {
+    return this->size;
+}
+
+void Planet096Text::render(Planet096Scene &scene) const {
+    if(!this->has_rendered) {
+        this->scene = scene;
+        this->has_rendered = true;
+    }
 }
 
 void Planet096Text::refresh() const {

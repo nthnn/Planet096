@@ -13,9 +13,11 @@ public:
 
     void setX(int x);
     void setY(int y);
+    void setTextSize(int size);
 
     int getX();
     int getY();
+    int getTextSize();
 
     virtual void render(Planet096Scene &scene) const override;
 
@@ -24,7 +26,7 @@ protected:
 
 private:
     char* text;
-    int x, y;
+    int x, y, size;
 
     Planet096Scene &scene;
     mutable bool has_rendered = false;
