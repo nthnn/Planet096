@@ -5,8 +5,6 @@
 #include <Adafruit_SSD1306.h>
 #include <List.hpp>
 
-#include <planet096_app.h>
-
 #define APPBAR_NONE         0x00
 #define APPBAR_NORMAL       0x01
 #define APPBAR_LINE_BORDER  0x02
@@ -50,7 +48,7 @@ public:
     void setSceneMenuStyle(uint8_t scene_menu_style);
     uint8_t getSceneMenuStyle();
 
-    void render();
+    void render(bool whole_screen = true);
 
 private:
     char *title = "_";

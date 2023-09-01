@@ -10,9 +10,8 @@ Planet096Scene::Planet096Scene() {
 }
 
 Planet096Scene::Planet096Scene(const char* title):
-    title(title) {
-    this->display = Planet096App::getI2CScreen();
-}
+    title(title),
+    display(Planet096App::getI2CScreen()) { }
 
 void Planet096Scene::setAppBarTitle(const char* title) {
     this->title = title;
@@ -231,12 +230,15 @@ void Planet096Scene::renderMenu() {
 
 void Planet096Scene::renderWidgets() { }
 
-void Planet096Scene::render() {
+void Planet096Scene::render(bool whole_screen = true) {
     this->display.clearDisplay();
  
-    this->renderAppBar();
+    if(whole_screen)
+        this->renderAppBar();
     this->renderWidgets();
-    this->renderMenu();
+
+    if(whole_screen)
+        this->renderMenu();
 
     this->has_rendered = true;
 }
