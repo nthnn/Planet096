@@ -104,32 +104,32 @@ void Planet096Scene::renderAppBar() {
         this->display.fillRect(0, 0, 128, 9, BLACK);
 
     this->display.setTextSize(1);
-    if(this->appbar_style != APPBAR_NONE) {
+    if(this->appbar_style != P96_APPBAR_NONE) {
         int title_length = strlen(this->title);
         switch(this->appbar_align) {
-            case APPBAR_ALIGN_CENTER:
+            case P96_APPBAR_ALIGN_CENTER:
                 this->display.setCursor(59 - ((title_length * 5) / 2), 1);
                 break;
-            case APPBAR_ALIGN_LEFT:
+            case P96_APPBAR_ALIGN_LEFT:
                 this->display.setCursor(4, 1);
                 break;
-            case APPBAR_ALIGN_RIGHT:
+            case P96_APPBAR_ALIGN_RIGHT:
                 this->display.setCursor((124 - title_length) - (title_length * 5), 1);
                 break;
         }
     }
 
     switch(this->appbar_style) {
-        case APPBAR_NONE:
+        case P96_APPBAR_NONE:
             break;
 
-        case APPBAR_NORMAL:
+        case P96_APPBAR_NORMAL:
             this->display.fillRect(0, 0, 128, 9, WHITE);
             this->display.setTextColor(BLACK, WHITE);
 
             break;
 
-        case APPBAR_LINE_BORDER:
+        case P96_APPBAR_LINE_BORDER:
             this->display.drawLine(0, 10, 128, 9, WHITE);
             this->display.setTextColor(WHITE, BLACK);
 
@@ -148,7 +148,7 @@ void Planet096Scene::renderMenu() {
     this->display.setTextColor(WHITE);
 
     switch(this->scene_menu_style) {
-        case SCENE_MENU_BUTTONS:
+        case P96_SCENE_MENU_BUTTONS:
             if(this->menu_center != NULL) {
                 this->display.drawRect(4, 52, 38, 12, WHITE);
                 this->display.setCursor(6 + ((32 - (strlen(this->menu_left) * 5)) / 2), 54);
@@ -174,7 +174,7 @@ void Planet096Scene::renderMenu() {
 
             break;
 
-        case SCENE_MENU_DIVIDER:
+        case P96_SCENE_MENU_DIVIDER:
             if(this->menu_center != NULL) {
                 this->display.drawLine(0, 52, 128, 52, WHITE);
                 this->display.drawLine(43, 52, 43, 64, WHITE);
@@ -202,10 +202,10 @@ void Planet096Scene::renderMenu() {
 
             break;
 
-        case SCENE_MENU_HL_ONLY:
+        case P96_SCENE_MENU_HL_ONLY:
             this->display.drawLine(0, 52, 128, 52, WHITE);
 
-        case SCENE_MENU_PLAIN:
+        case P96_SCENE_MENU_PLAIN:
             if(this->menu_center != NULL) {
                 this->display.setCursor(6 + ((32 - (strlen(this->menu_left) * 5)) / 2), 54);
                 this->display.println(this->menu_left);
