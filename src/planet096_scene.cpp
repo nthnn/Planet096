@@ -53,8 +53,10 @@ void Planet096Scene::setSceneMenu(
     this->menu_left = menu_left;
     this->menu_right = menu_right;
 
-    if(this->has_rendered)
+    if(this->has_rendered) {
+        this->menu_center = NULL;
         this->renderMenu();
+    }
 }
 
 void Planet096Scene::setSceneMenu(
@@ -161,12 +163,12 @@ void Planet096Scene::renderMenu() {
                 this->display.println(this->menu_right);
             }
             else {
-                this->display.drawRect(4, 52, 56, 12, WHITE);
+                this->display.drawRect(4, 52, 58, 12, WHITE);
                 this->display.setCursor(6 + ((50 - (strlen(this->menu_left) * 5)) / 2), 54);
                 this->display.println(this->menu_left);
 
-                this->display.drawRect(62, 52, 56, 12, WHITE);
-                this->display.setCursor(64 + ((50 - (strlen(this->menu_right) * 5)) / 2), 54);
+                this->display.drawRect(66, 52, 58, 12, WHITE);
+                this->display.setCursor(68 + ((50 - (strlen(this->menu_right) * 5)) / 2), 54);
                 this->display.println(this->menu_right);
             }
 
