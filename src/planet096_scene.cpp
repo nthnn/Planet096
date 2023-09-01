@@ -143,25 +143,31 @@ void Planet096Scene::renderMenu() {
     if(this->has_rendered)
         this->display.fillRect(0, 46, 128, 18, BLACK);
 
+    this->display.setTextSize(1);
+    this->display.setTextColor(WHITE);
+
     switch(this->scene_menu_style) {
         case SCENE_MENU_BUTTONS:
             if(this->menu_center != NULL) {
                 this->display.drawRect(4, 52, 38, 12, WHITE);
-                this->display.setTextSize(1);
-                this->display.setTextColor(WHITE);
                 this->display.setCursor(6 + ((32 - (strlen(this->menu_left) * 5)) / 2), 54);
                 this->display.println(this->menu_left);
 
                 this->display.drawRect(46, 52, 38, 12, WHITE);
-                this->display.setTextSize(1);
-                this->display.setTextColor(WHITE);
                 this->display.setCursor(48 + ((32 - (strlen(this->menu_center) * 5)) / 2), 54);
                 this->display.println(this->menu_center);
 
                 this->display.drawRect(88, 52, 38, 12, WHITE);
-                this->display.setTextSize(1);
-                this->display.setTextColor(WHITE);
                 this->display.setCursor(90 + ((32 - (strlen(this->menu_right) * 5)) / 2), 54);
+                this->display.println(this->menu_right);
+            }
+            else {
+                this->display.drawRect(4, 52, 56, 12, WHITE);
+                this->display.setCursor(6 + ((50 - (strlen(this->menu_left) * 5)) / 2), 54);
+                this->display.println(this->menu_left);
+
+                this->display.drawRect(62, 52, 56, 12, WHITE);
+                this->display.setCursor(64 + ((50 - (strlen(this->menu_right) * 5)) / 2), 54);
                 this->display.println(this->menu_right);
             }
 
