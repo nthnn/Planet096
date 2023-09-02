@@ -62,6 +62,33 @@ void Planet096Text::hasRendered() {
     this->has_rendered = true;
 }
 
+void Planet096Text::setHasScrollbar(bool has_scrollbar) {
+    this->has_scrollbar = true;
+    this->invalidate();
+}
+
+bool Planet096Text::hasScrollbar() {
+    return this->has_scrollbar;
+}
+
+void Planet096Text::setBackgroundColor(Planet096Color bg_color) {
+    this->bg_color = bg_color;
+    this->invalidate();
+}
+
+void Planet096Text::setForegroundColor(Planet096Color fg_color) {
+    this->fg_color = fg_color;
+    this->invalidate();
+}
+
+Planet096Color Planet096Text::getBackgroundColor() {
+    return this->bg_color;
+}
+
+Planet096Color Planet096Text::getForegroundColor() {
+    return this->fg_color;
+}
+
 void Planet096Text::invalidate() {
     if(this->has_rendered)
         this->scene->renderWidget();

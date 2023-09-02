@@ -2,6 +2,7 @@
 #define PLANET096_UI_TEXT_H
 
 #include <Arduino.h>
+#include <planet096_colors.h>
 #include <planet096_scene.h>
 
 class Planet096Scene;
@@ -25,12 +26,25 @@ public:
     void setVisible(bool is_visible);
     bool isVisible();
 
+    void setHasScrollbar(bool has_scrollbar);
+    bool hasScrollbar();
+
+    void setBackgroundColor(Planet096Color bg_color);
+    void setForegroundColor(Planet096Color fg_color);
+
+    Planet096Color getBackgroundColor();
+    Planet096Color getForegroundColor();
+
     void hasRendered();
 
 private:
     char* text;
-    bool is_visible = true, has_rendered = false;
     uint8_t x = 0, y = 0, size = 1;
+    Planet096Color bg_color = PLANET096_BLACK,
+        fg_color = PLANET096_WHITE;
+    bool is_visible = true,
+        has_rendered = false,
+        has_scrollbar = false;
 
     Planet096Scene *scene;
 
