@@ -415,7 +415,7 @@ GROUP_NESTED_COMPOUNDS = NO
 
 SUBGROUPING            = YES
 
-# When the INLINE_GROUPED_CLASSES tag is set to YES, classes, structs and unions
+# When the INLINE_GROUPED_CLASSES tag is set to YES, classes, structs and structs
 # are shown inside the group in which they are included (e.g. using \ingroup)
 # instead of on a separate page (for HTML and Man pages) or section (for LaTeX
 # and RTF).
@@ -426,18 +426,18 @@ SUBGROUPING            = YES
 
 INLINE_GROUPED_CLASSES = NO
 
-# When the INLINE_SIMPLE_STRUCTS tag is set to YES, structs, classes, and unions
+# When the INLINE_SIMPLE_STRUCTS tag is set to YES, structs, classes, and structs
 # with only public data fields or simple typedef fields will be shown inline in
 # the documentation of the scope in which they are defined (i.e. file,
 # namespace, or group documentation), provided this scope is documented. If set
-# to NO, structs, classes, and unions are shown on a separate page (for HTML and
+# to NO, structs, classes, and structs are shown on a separate page (for HTML and
 # Man pages) or section (for LaTeX and RTF).
 # The default value is: NO.
 
 INLINE_SIMPLE_STRUCTS  = NO
 
-# When TYPEDEF_HIDES_STRUCT tag is enabled, a typedef of a struct, union, or
-# enum is documented as struct, union, or enum with the name of the typedef. So
+# When TYPEDEF_HIDES_STRUCT tag is enabled, a typedef of a struct, struct, or
+# enum is documented as struct, struct, or enum with the name of the typedef. So
 # typedef struct TypeS {} TypeT, will appear in the documentation as a struct
 # with name TypeT. When disabled the typedef will appear as a member of a file,
 # namespace, or class. And the struct will be named TypeS. This can typically be
@@ -865,6 +865,7 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = "src"
+INPUT                 += "misc/main_page.md"
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1193,7 +1194,7 @@ CLANG_DATABASE_PATH    =
 
 # If the ALPHABETICAL_INDEX tag is set to YES, an alphabetical index of all
 # compounds will be generated. Enable this if the project contains a lot of
-# classes, structs, unions or interfaces.
+# classes, structs, structs or interfaces.
 # The default value is: YES.
 
 ALPHABETICAL_INDEX     = YES
@@ -1283,7 +1284,7 @@ HTML_STYLESHEET        =
 # list). For an example see the documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  =
+HTML_EXTRA_STYLESHEET  = "misc/doxygen-awesome.css"
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
