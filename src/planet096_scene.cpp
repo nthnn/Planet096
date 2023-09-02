@@ -280,7 +280,11 @@ void Planet096Scene::renderTextWidget(Planet096Text* textUI) {
 
     this->display.setTextSize(textUI->getTextSize());
     this->display.setTextColor(WHITE);
-    this->display.setCursor(textUI->getX(), textUI->getY());
+    this->display.setCursor(
+        textUI->getX(),
+        ((this->appbar_style == PLANET096_APPBAR_NONE) ? 3 : 12)
+            + textUI->getY()
+    );
     this->display.println(textUI->getText());
     this->display.display();
 
