@@ -1,19 +1,29 @@
 #ifndef PLANET096_WIDGET_H
 #define PLANET096_WIDGET_H
 
-#include <Adafruit_SSD1306.h>
-#include <planet096_scene.h>
+#include <planet096_ui_text.h>
 
-class Planet096Widget {
-public:
-    virtual void render(Planet096Scene &scene) const = 0;
+#define PLANET096_WUI_NONE 0x00
+#define PLANET096_WUI_TEXT 0x01
 
-protected:
-    virtual void refresh() const = 0;
+struct Planet096Widget {
+    uint8_t widget_type;
+    Planet096Text* text_ui;
 
-private:
-    uint8_t x, y;
-    uint8_t width, height;
+    Planet096Widget() {
+        widget_type = PLANET096_WUI_NONE;
+    }
+
+    Planet096Widget(uint8_t wtype) {
+        widget_type = wtype;
+    }
 };
+
+static struct Planet096Widget createWidget(Planet096Text* textUI) {
+    struct Planet096Widget widget(PLANET096_WUI_TEXT);
+    widget.text_ui = textUI;
+
+    return widget;
+}
 
 #endif

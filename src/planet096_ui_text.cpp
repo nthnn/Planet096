@@ -1,55 +1,68 @@
 #include <Arduino.h>
 #include <planet096_scene.h>
 #include <planet096_ui_text.h>
-#include <planet096_widget.h>
 
-Planet096Text::Planet096Text(const char* text):
-    text(text) { }
+Planet096Text::Planet096Text():
+    scene(nullptr),
+    text("_") { }
+
+Planet096Text::Planet096Text(
+    Planet096Scene *scene,
+    const char* text
+):
+    text(text),
+    scene(scene) { }
 
 void Planet096Text::setText(const char* text) {
     this->text = text;
-    this->refresh();
+    this->invalidate();
 }
 
 const char* Planet096Text::getText() {
     return this->text;
 }
 
-void Planet096Text::setX(int x) {
+void Planet096Text::setX(uint8_t x) {
     this->x = x;
-    this->refresh();
+    this->invalidate();
 }
 
-void Planet096Text::setY(int y) {
+void Planet096Text::setY(uint8_t y) {
     this->y = y;
-    this->refresh();
+    this->invalidate();
 }
 
-int Planet096Text::getX() {
+uint8_t Planet096Text::getX() {
     return this->x;
 }
 
-int Planet096Text::getY() {
+uint8_t Planet096Text::getY() {
     return this->y;
 }
 
-void Planet096Text::setTextSize() {
+void Planet096Text::setTextSize(uint8_t size) {
     this->size = size;
-    this->refresh();
+    this->invalidate();
 }
 
-int Planet096Text::getTextSize() {
+uint8_t Planet096Text::getTextSize() {
     return this->size;
 }
 
-void Planet096Text::render(Planet096Scene &scene) const {
-    if(!this->has_rendered) {
-        this->scene = scene;
-        this->has_rendered = true;
-    }
+void Planet096Text::setVisible(bool is_visible) {
+    this->is_visible = is_visible;
+    this->invalidate();
 }
 
-void Planet096Text::refresh() const {
+bool Planet096Text::isVisible() {
+    return this->is_visible;
+}
+
+void Planet096Text::hasRendered() {
+    this->has_rendered = true;
+}
+
+void Planet096Text::invalidate() {
     if(this->has_rendered)
-        this->render(this->scene);
+        this->scene->renderWidget();
 }

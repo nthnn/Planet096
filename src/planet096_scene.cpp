@@ -1,17 +1,20 @@
 #include <Arduino.h>
 #include <Adafruit_SSD1306.h>
-#include <List.hpp>
 
-#include "planet096_app.h"
-#include "planet096_scene.h"
+#include <planet096_app.h>
+#include <planet096_scene.h>
+#include <planet096_ui_text.h>
 
-Planet096Scene::Planet096Scene() {
-    this->display = Planet096App::getI2CScreen();
-}
+Planet096Scene::Planet096Scene():
+    display(Planet096App::getI2CScreen()) { }
 
 Planet096Scene::Planet096Scene(const char* title):
     title(title),
     display(Planet096App::getI2CScreen()) { }
+
+Adafruit_SSD1306* Planet096Scene::getDisplay() {
+    return &this->display;
+}
 
 void Planet096Scene::setAppBarTitle(const char* title) {
     this->title = title;
@@ -99,37 +102,48 @@ uint8_t Planet096Scene::getSceneMenuStyle() {
     return this->scene_menu_style;
 }
 
+void Planet096Scene::setMainWidget(struct Planet096Widget main_widget) {
+    this->main_widget = main_widget;
+
+    if(this->has_rendered)
+        this->renderWidget();
+}
+
+struct Planet096Widget Planet096Scene::getMainWidget() {
+    return this->main_widget;
+}
+
 void Planet096Scene::renderAppBar() {
     if(this->has_rendered)
         this->display.fillRect(0, 0, 128, 9, BLACK);
 
     this->display.setTextSize(1);
-    if(this->appbar_style != P96_APPBAR_NONE) {
+    if(this->appbar_style != PLANET096_APPBAR_NONE) {
         int title_length = strlen(this->title);
         switch(this->appbar_align) {
-            case P96_APPBAR_ALIGN_CENTER:
+            case PLANET096_APPBAR_ALIGN_CENTER:
                 this->display.setCursor(59 - ((title_length * 5) / 2), 1);
                 break;
-            case P96_APPBAR_ALIGN_LEFT:
+            case PLANET096_APPBAR_ALIGN_LEFT:
                 this->display.setCursor(4, 1);
                 break;
-            case P96_APPBAR_ALIGN_RIGHT:
+            case PLANET096_APPBAR_ALIGN_RIGHT:
                 this->display.setCursor((124 - title_length) - (title_length * 5), 1);
                 break;
         }
     }
 
     switch(this->appbar_style) {
-        case P96_APPBAR_NONE:
+        case PLANET096_APPBAR_NONE:
             break;
 
-        case P96_APPBAR_NORMAL:
+        case PLANET096_APPBAR_NORMAL:
             this->display.fillRect(0, 0, 128, 9, WHITE);
             this->display.setTextColor(BLACK, WHITE);
 
             break;
 
-        case P96_APPBAR_LINE_BORDER:
+        case PLANET096_APPBAR_LINE_BORDER:
             this->display.drawLine(0, 10, 128, 9, WHITE);
             this->display.setTextColor(WHITE, BLACK);
 
@@ -148,7 +162,7 @@ void Planet096Scene::renderMenu() {
     this->display.setTextColor(WHITE);
 
     switch(this->scene_menu_style) {
-        case P96_SCENE_MENU_BUTTONS:
+        case PLANET096_SCENE_MENU_BUTTONS:
             if(this->menu_center != NULL) {
                 this->display.drawRect(4, 52, 38, 12, WHITE);
                 this->display.setCursor(6 + ((32 - (strlen(this->menu_left) * 5)) / 2), 54);
@@ -174,7 +188,7 @@ void Planet096Scene::renderMenu() {
 
             break;
 
-        case P96_SCENE_MENU_DIVIDER:
+        case PLANET096_SCENE_MENU_DIVIDER:
             if(this->menu_center != NULL) {
                 this->display.drawLine(0, 52, 128, 52, WHITE);
                 this->display.drawLine(43, 52, 43, 64, WHITE);
@@ -202,10 +216,10 @@ void Planet096Scene::renderMenu() {
 
             break;
 
-        case P96_SCENE_MENU_HL_ONLY:
+        case PLANET096_SCENE_MENU_HL_ONLY:
             this->display.drawLine(0, 52, 128, 52, WHITE);
 
-        case P96_SCENE_MENU_PLAIN:
+        case PLANET096_SCENE_MENU_PLAIN:
             if(this->menu_center != NULL) {
                 this->display.setCursor(6 + ((32 - (strlen(this->menu_left) * 5)) / 2), 54);
                 this->display.println(this->menu_left);
@@ -230,17 +244,32 @@ void Planet096Scene::renderMenu() {
     this->display.display();
 }
 
-void Planet096Scene::renderWidgets() { }
+void Planet096Scene::renderWidget() {
+    this->display.fillRect(0, 10, 128, 42, BLACK);
 
-void Planet096Scene::render(bool whole_screen = true) {
+    if(this->main_widget.widget_type == PLANET096_WUI_TEXT)
+        this->renderTextWidget(this->main_widget.text_ui);
+}
+
+void Planet096Scene::render() {
     this->display.clearDisplay();
  
-    if(whole_screen)
-        this->renderAppBar();
-    this->renderWidgets();
-
-    if(whole_screen)
-        this->renderMenu();
-
+    this->renderAppBar();
+    this->renderWidget();
+    this->renderMenu();
+ 
     this->has_rendered = true;
+}
+
+void Planet096Scene::renderTextWidget(Planet096Text* textUI) {
+    if(!textUI->isVisible())
+        return;
+
+    this->display.setTextSize(textUI->getTextSize());
+    this->display.setTextColor(WHITE);
+    this->display.setCursor(textUI->getX(), textUI->getY());
+    this->display.println(textUI->getText());
+    this->display.display();
+
+    textUI->hasRendered();
 }

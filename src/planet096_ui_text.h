@@ -2,34 +2,39 @@
 #define PLANET096_UI_TEXT_H
 
 #include <Arduino.h>
-#include <planet096_widget.h>
+#include <planet096_scene.h>
 
-class Planet096Text : public Planet096Widget {
+class Planet096Scene;
+
+class Planet096Text {
 public:
-    Planet096Text(const char* text);
+    Planet096Text();
+    Planet096Text(Planet096Scene *scene, const char* text);
 
     void setText(const char* text);
     const char* getText();
 
-    void setX(int x);
-    void setY(int y);
-    void setTextSize(int size);
+    void setX(uint8_t x);
+    void setY(uint8_t y);
+    void setTextSize(uint8_t size);
 
-    int getX();
-    int getY();
-    int getTextSize();
+    uint8_t getX();
+    uint8_t getY();
+    uint8_t getTextSize();
 
-    virtual void render(Planet096Scene &scene) const override;
+    void setVisible(bool is_visible);
+    bool isVisible();
 
-protected:
-    virtual void refresh() const override;
+    void hasRendered();
 
 private:
     char* text;
-    int x, y, size;
+    bool is_visible = true, has_rendered = false;
+    uint8_t x = 0, y = 0, size = 1;
 
-    Planet096Scene &scene;
-    mutable bool has_rendered = false;
+    Planet096Scene *scene;
+
+    void invalidate();
 };
 
 #endif
