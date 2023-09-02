@@ -9,9 +9,9 @@ class Planet096Scene;
 class Planet096Text {
 public:
     Planet096Text();
-    Planet096Text(Planet096Scene *scene, const char* text);
+    Planet096Text(Planet096Scene *scene, char* text);
 
-    void setText(const char* text);
+    void setText(char* text);
     const char* getText();
 
     void setX(uint8_t x);

@@ -8,12 +8,12 @@ Planet096Text::Planet096Text():
 
 Planet096Text::Planet096Text(
     Planet096Scene *scene,
-    const char* text
+    char* text
 ):
     text(text),
     scene(scene) { }
 
-void Planet096Text::setText(const char* text) {
+void Planet096Text::setText(char* text) {
     this->text = text;
     this->invalidate();
 }

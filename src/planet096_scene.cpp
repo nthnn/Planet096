@@ -8,7 +8,7 @@
 Planet096Scene::Planet096Scene():
     display(Planet096App::getI2CScreen()) { }
 
-Planet096Scene::Planet096Scene(const char* title):
+Planet096Scene::Planet096Scene(char* title):
     title(title),
     display(Planet096App::getI2CScreen()) { }
 
@@ -16,7 +16,7 @@ Adafruit_SSD1306* Planet096Scene::getDisplay() {
     return &this->display;
 }
 
-void Planet096Scene::setAppBarTitle(const char* title) {
+void Planet096Scene::setAppBarTitle(char* title) {
     this->title = title;
 
     if(this->has_rendered)
@@ -50,8 +50,8 @@ uint8_t Planet096Scene::getAppBarAlignment() {
 }
 
 void Planet096Scene::setSceneMenu(
-    const char* menu_left,
-    const char* menu_right
+    char* menu_left,
+    char* menu_right
 ) {
     this->menu_left = menu_left;
     this->menu_right = menu_right;
@@ -63,9 +63,9 @@ void Planet096Scene::setSceneMenu(
 }
 
 void Planet096Scene::setSceneMenu(
-    const char* menu_left,
-    const char* menu_center,
-    const char* menu_right
+    char* menu_left,
+    char* menu_center,
+    char* menu_right
 ) {
     this->menu_left = menu_left;
     this->menu_right = menu_right;
@@ -102,41 +102,39 @@ uint8_t Planet096Scene::getSceneMenuStyle() {
     return this->scene_menu_style;
 }
 
-void Planet096Scene::setMainWidget(struct Planet096Widget main_widget) {
+void Planet096Scene::setMainWidget(Planet096Widget main_widget) {
     this->main_widget = main_widget;
 
     if(this->has_rendered)
         this->renderWidget();
 }
 
-struct Planet096Widget Planet096Scene::getMainWidget() {
+Planet096Widget Planet096Scene::getMainWidget() {
     return this->main_widget;
 }
 
 void Planet096Scene::renderAppBar() {
+    if(this->appbar_style == PLANET096_APPBAR_NONE)
+        return;
+
     if(this->has_rendered)
         this->display.fillRect(0, 0, 128, 9, BLACK);
-
     this->display.setTextSize(1);
-    if(this->appbar_style != PLANET096_APPBAR_NONE) {
-        int title_length = strlen(this->title);
-        switch(this->appbar_align) {
-            case PLANET096_APPBAR_ALIGN_CENTER:
-                this->display.setCursor(59 - ((title_length * 5) / 2), 1);
-                break;
-            case PLANET096_APPBAR_ALIGN_LEFT:
-                this->display.setCursor(4, 1);
-                break;
-            case PLANET096_APPBAR_ALIGN_RIGHT:
-                this->display.setCursor((124 - title_length) - (title_length * 5), 1);
-                break;
-        }
+
+    int title_length = strlen(this->title);
+    switch(this->appbar_align) {
+        case PLANET096_APPBAR_ALIGN_CENTER:
+            this->display.setCursor(59 - ((title_length * 5) / 2), 1);
+            break;
+        case PLANET096_APPBAR_ALIGN_LEFT:
+            this->display.setCursor(4, 1);
+            break;
+        case PLANET096_APPBAR_ALIGN_RIGHT:
+            this->display.setCursor((124 - title_length) - (title_length * 5), 1);
+            break;
     }
 
     switch(this->appbar_style) {
-        case PLANET096_APPBAR_NONE:
-            break;
-
         case PLANET096_APPBAR_NORMAL:
             this->display.fillRect(0, 0, 128, 9, WHITE);
             this->display.setTextColor(BLACK, WHITE);
@@ -155,6 +153,9 @@ void Planet096Scene::renderAppBar() {
 }
 
 void Planet096Scene::renderMenu() {
+    if(this->scene_menu_style == PLANET096_SCENE_MENU_NONE)
+        return;
+
     if(this->has_rendered)
         this->display.fillRect(0, 46, 128, 18, BLACK);
 
@@ -245,7 +246,19 @@ void Planet096Scene::renderMenu() {
 }
 
 void Planet096Scene::renderWidget() {
-    this->display.fillRect(0, 10, 128, 42, BLACK);
+    if(this->main_widget.widget_type == PLANET096_WUI_NONE)
+        return;
+
+    if(this->appbar_style == PLANET096_APPBAR_NONE &&
+        this->scene_menu_style == PLANET096_SCENE_MENU_NONE)
+        this->display.fillRect(0, 0, 128, 64, BLACK);
+    else if(this->appbar_style != PLANET096_APPBAR_NONE &&
+        this->scene_menu_style == PLANET096_SCENE_MENU_NONE)
+        this->display.fillRect(0, 10, 128, 54, BLACK);
+    else if(this->appbar_style == PLANET096_APPBAR_NONE &&
+        this->scene_menu_style != PLANET096_SCENE_MENU_NONE)
+        this->display.fillRect(0, 0, 128, 52, BLACK);
+    else this->display.fillRect(0, 10, 128, 42, BLACK);
 
     if(this->main_widget.widget_type == PLANET096_WUI_TEXT)
         this->renderTextWidget(this->main_widget.text_ui);
