@@ -5,8 +5,9 @@ var annotated_dup =
     [ "Examples", "index.html#autotoc_md2", null ],
     [ "Contribution and Feedback", "index.html#autotoc_md3", null ],
     [ "License", "index.html#autotoc_md4", null ],
+    [ "_Planet096Widget", "struct__Planet096Widget.html", "struct__Planet096Widget" ],
     [ "Planet096App", "classPlanet096App.html", null ],
     [ "Planet096Scene", "classPlanet096Scene.html", "classPlanet096Scene" ],
-    [ "Planet096Text", "classPlanet096Text.html", "classPlanet096Text" ],
-    [ "Planet096Widget", "structPlanet096Widget.html", "structPlanet096Widget" ]
+    [ "Planet096ScrollableText", "classPlanet096ScrollableText.html", "classPlanet096ScrollableText" ],
+    [ "Planet096Text", "classPlanet096Text.html", "classPlanet096Text" ]
 ];
