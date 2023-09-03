@@ -32,6 +32,14 @@ void Planet096Text::setY(uint8_t y) {
     this->invalidate();
 }
 
+void Planet096Text::setLocation(uint8_t x, uint8_t y) {
+    this->x = x;
+    this->y = y;
+
+    this->invalidate();
+}
+
+
 uint8_t Planet096Text::getX() {
     return this->x;
 }

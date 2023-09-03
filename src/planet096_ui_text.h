@@ -17,6 +17,7 @@ public:
 
     void setX(uint8_t x);
     void setY(uint8_t y);
+    void setLocation(uint8_t x, uint8_t y);
     void setTextSize(uint8_t size);
 
     uint8_t getX();
