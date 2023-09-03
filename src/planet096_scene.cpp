@@ -3,7 +3,22 @@
 
 #include <planet096_app.h>
 #include <planet096_scene.h>
+#include <planet096_ui_scrollable_text.h>
 #include <planet096_ui_text.h>
+
+static inline void splitScrollableString(const char* input, char** segments, int length) {
+    int nseg = (strlen(input) + 18) / 19;
+
+    for(int i = 0; i < nseg; i++) {
+        segments[i] = (char*) malloc(20);
+
+        if(segments[i] == NULL)
+            return;
+
+        strncpy(segments[i], input + i * 19, 19);
+        segments[i][19] = '\0';
+    }
+}
 
 Planet096Scene::Planet096Scene():
     display(Planet096App::getI2CScreen()) { }
@@ -157,7 +172,7 @@ void Planet096Scene::renderMenu() {
         return;
 
     if(this->has_rendered)
-        this->display.fillRect(0, 46, 128, 18, BLACK);
+        this->display.fillRect(0, 47, 128, 18, BLACK);
 
     this->display.setTextSize(1);
     this->display.setTextColor(WHITE);
@@ -262,6 +277,8 @@ void Planet096Scene::renderWidget() {
 
     if(this->main_widget.widget_type == PLANET096_WUI_TEXT)
         this->renderTextWidget(this->main_widget.text_ui);
+    else if(this->main_widget.widget_type == PLANET096_WUI_SCROLLABLE_TEXT)
+        this->renderScrollaleTextWidget(this->main_widget.scrollable_text_ui);
 }
 
 void Planet096Scene::render() {
@@ -278,15 +295,88 @@ void Planet096Scene::renderTextWidget(Planet096Text* textUI) {
     if(!textUI->isVisible())
         return;
 
-    this->display.setTextSize(textUI->getTextSize());
-    this->display.setTextColor(WHITE);
+    this->display.setTextColor(
+        textUI->getForegroundColor(),
+        textUI->getBackgroundColor()
+    );
     this->display.setCursor(
         textUI->getX(),
         ((this->appbar_style == PLANET096_APPBAR_NONE) ? 3 : 12)
             + textUI->getY()
     );
+
+    this->display.setTextSize(textUI->getTextSize());
     this->display.println(textUI->getText());
     this->display.display();
 
     textUI->hasRendered();
+}
+
+void Planet096Scene::renderScrollaleTextWidget(Planet096ScrollableText* scrollableTextUI) {
+    char* text = scrollableTextUI->getText();
+    int slen = strlen(text), length = (slen / 19) + ((slen % 19) != 0 ? 1 : 0);
+
+    char* segment_array[length];
+    splitScrollableString(text, segment_array, length);
+
+    int y = 0, height = 0, rows = 4, yspc = 2;
+    if(this->appbar_style == PLANET096_APPBAR_NONE &&
+        this->scene_menu_style == PLANET096_SCENE_MENU_NONE) {
+        y = 4;
+        height = 56;
+        rows = 5;
+    }
+    else if(this->appbar_style == PLANET096_APPBAR_NONE &&
+        this->scene_menu_style != PLANET096_SCENE_MENU_NONE) {
+        y = 4;
+        height = 42;
+    }
+    else if(this->appbar_style != PLANET096_APPBAR_NONE &&
+        this->scene_menu_style == PLANET096_SCENE_MENU_NONE) {
+        y = 13;
+        height = 47;
+        yspc = 11;
+    }
+    else {
+        y = 13;
+        height = 34;
+        rows = 3;
+        yspc = 11;
+    }
+
+    this->display.setTextSize(1);
+    this->display.setTextColor(
+        scrollableTextUI->getForegroundColor(),
+        scrollableTextUI->getBackgroundColor()
+    );
+    yspc += 6;
+
+    int max_scroll = length / rows;
+    max_scroll += (length % rows) == 0 ? 0 : 1;
+    scrollableTextUI->maxScroll(max_scroll);
+
+    int viewport = 0;
+    if(scrollableTextUI->getScrollPosition() != 0)
+        viewport = scrollableTextUI->getScrollPosition() * (rows - 1);
+
+    for(int i = viewport - 1, j = 0; i <= rows; i++, j++) {
+        if(i >= length || (scrollableTextUI->getScrollPosition() == 0 && i == rows))
+            break;
+
+        this->display.setCursor(4, yspc + ((j == 0 ? 0 : j - 1) * 10));
+        this->display.println(segment_array[i]);
+    }
+
+    for(int i = 0; i < length; i++)
+        free(segment_array[i]);
+
+    int thumb = height / max_scroll;
+    this->display.drawRect(120, y, 4, height, PLANET096_WHITE);
+    this->display.fillRect(
+        120, (scrollableTextUI->getScrollPosition() == 0 ?
+            y : y + (thumb * scrollableTextUI->getScrollPosition())) + 1,
+        4, thumb,
+        PLANET096_WHITE
+    );
+    this->display.display();
 }
