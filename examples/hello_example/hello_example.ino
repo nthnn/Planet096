@@ -9,9 +9,7 @@ void app() {
     scene.setSceneMenu("Back", "Set", "Ok");
 
     Planet096Text text(&scene, "Hello, world!");
-    text.setX(26);
-    text.setY(14);
-    text.setTextSize(1);
+    text.setLocation(26, 14);
 
     scene.setMainWidget(createWidget(&text));
     Planet096App::start(scene);
