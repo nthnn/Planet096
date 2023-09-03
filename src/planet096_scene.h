@@ -76,6 +76,7 @@ private:
     void renderMenu();
 
     void renderTextWidget(Planet096Text* textUI);
+    void renderScrollaleTextWidget(Planet096ScrollableText* scrollableTextUI);
 };
 
 #endif
