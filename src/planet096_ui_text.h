@@ -13,7 +13,7 @@ public:
     Planet096Text(Planet096Scene *scene, char* text);
 
     void setText(char* text);
-    const char* getText();
+    char* getText();
 
     void setX(uint8_t x);
     void setY(uint8_t y);
@@ -25,9 +25,6 @@ public:
 
     void setVisible(bool is_visible);
     bool isVisible();
-
-    void setHasScrollbar(bool has_scrollbar);
-    bool hasScrollbar();
 
     void setBackgroundColor(Planet096Color bg_color);
     void setForegroundColor(Planet096Color fg_color);
@@ -43,8 +40,7 @@ private:
     Planet096Color bg_color = PLANET096_BLACK,
         fg_color = PLANET096_WHITE;
     bool is_visible = true,
-        has_rendered = false,
-        has_scrollbar = false;
+        has_rendered = false;
 
     Planet096Scene *scene;
 

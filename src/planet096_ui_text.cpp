@@ -18,7 +18,7 @@ void Planet096Text::setText(char* text) {
     this->invalidate();
 }
 
-const char* Planet096Text::getText() {
+char* Planet096Text::getText() {
     return this->text;
 }
 
@@ -60,15 +60,6 @@ bool Planet096Text::isVisible() {
 
 void Planet096Text::hasRendered() {
     this->has_rendered = true;
-}
-
-void Planet096Text::setHasScrollbar(bool has_scrollbar) {
-    this->has_scrollbar = true;
-    this->invalidate();
-}
-
-bool Planet096Text::hasScrollbar() {
-    return this->has_scrollbar;
 }
 
 void Planet096Text::setBackgroundColor(Planet096Color bg_color) {
