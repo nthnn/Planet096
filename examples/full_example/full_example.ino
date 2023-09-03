@@ -1,6 +1,6 @@
 #include <planet096.h>
 
-void setup() {
+void app() {
     Planet096Scene scene("Example");
     scene.setAppBarAlignment(PLANET096_APPBAR_ALIGN_CENTER);
     scene.setAppBarStyle(PLANET096_APPBAR_NORMAL);
@@ -16,5 +16,3 @@ void setup() {
     scene.setMainWidget(createWidget(&text));
     Planet096App::start(scene);
 }
-
-void loop() { }
