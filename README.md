@@ -13,6 +13,8 @@ Planet096 is an Arduino library designed to simplify the creation of graphical u
 ## Example Screenshots
 
 | ![Hello Example](./assets/p096_ss_1.jpg) <center>Hello Example</center> | ![Scrollable Example](./assets/p096_ss_2.jpg) <center>Scrollable Example</center> |
+|-|-|
+
 
 ## Getting Started
 
