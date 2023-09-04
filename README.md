@@ -1,6 +1,6 @@
 <p align="center">
-    <img src="./assets/planet096_logo.png" width="300" />
-    <h1>Planet096 GUI Library</h1>
+    <img src="./assets/planet096_logo.png" width="270" />
+    <h1 align="center">Planet096 GUI Library</h1>
 </p>
 
 ![Arduino CI](https://github.com/nthnn/Planet096/actions/workflows/arduino_ci.yml/badge.svg) ![Arduino Lint](https://github.com/nthnn/Planet096/actions/workflows/arduino_lint.yml/badge.svg)
