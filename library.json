@@ -1,0 +1,50 @@
+{
+    "name": "Planet096",
+    "version": "1.0.0",
+    "description": "Monochromatic GUI library for OLED 0.96 inch display in Arduino.",
+    "authors": [
+      {
+        "name": "ntnn",
+        "email": "nthnn@gmail.com"
+      }
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/nthnn"
+    },
+    "keywords": [
+      "Display",
+      "OLED",
+      "GUI",
+      "Monochromatic",
+      "0.96 inch"
+    ],
+    "frameworks": [
+      {
+        "name": "arduino",
+        "architecture": "*",
+        "platforms": "*"
+      }
+    ],
+    "platforms": ["*"],
+    "dependencies": [
+      {
+        "name": "Adafruit GFX Library",
+        "version": "*"
+      },
+      {
+        "name": "Adafruit BusIO",
+        "version": "*"
+      },
+      {
+        "name": "Adafruit SSD1306",
+        "version": "*"
+      }
+    ],
+    "build": {
+      "flags": ["-DPLANET096"]
+    },
+    "homepage": "https://github.com/nthnn",
+    "license": "MIT"
+  }
+  
