@@ -2,8 +2,8 @@
 #include <PortaMob.h>
 
 void app() {
-    pinMode(PORTAMOB_KEY_2, INPUT_PULLUP);
-    pinMode(PORTAMOB_KEY_8, INPUT_PULLUP);
+    pinMode(2, INPUT_PULLUP);
+    pinMode(3, INPUT_PULLUP);
 
     Planet096Scene scene("Scrollable Text");
     scene.setAppBarAlignment(PLANET096_APPBAR_ALIGN_LEFT);
@@ -19,11 +19,11 @@ void app() {
 
     Planet096App::start(scene);
     while(true)
-        if(digitalRead(PORTAMOB_KEY_8) == LOW) {
+        if(digitalRead(2) == LOW) {
             scrollableText.scrollDown();
             delay(1000);
         }
-        else if (digitalRead(PORTAMOB_KEY_2) == LOW) {
+        else if (digitalRead(3) == LOW) {
             scrollableText.scrollUp();
             delay(500);
         }

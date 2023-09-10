@@ -360,7 +360,7 @@ void Planet096Scene::renderScrollaleTextWidget(Planet096ScrollableText* scrollab
 
     int viewport = 0;
     if(scrollableTextUI->getScrollPosition() != 0)
-        viewport = scrollableTextUI->getScrollPosition() * (rows - 1);
+        viewport = scrollableTextUI->getScrollPosition() * rows;
 
     for(int i = viewport - 1, j = 0; i <= rows; i++, j++) {
         if(i >= length || (scrollableTextUI->getScrollPosition() == 0 && i == rows))
