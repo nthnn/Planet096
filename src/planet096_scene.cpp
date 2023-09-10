@@ -3,6 +3,7 @@
 
 #include <planet096_app.h>
 #include <planet096_scene.h>
+#include <planet096_ui_progress_bar.h>
 #include <planet096_ui_scrollable_text.h>
 #include <planet096_ui_text.h>
 
@@ -279,6 +280,8 @@ void Planet096Scene::renderWidget() {
         this->renderTextWidget(this->main_widget.text_ui);
     else if(this->main_widget.widget_type == PLANET096_WUI_SCROLLABLE_TEXT)
         this->renderScrollaleTextWidget(this->main_widget.scrollable_text_ui);
+    else if(this->main_widget.widget_type == PLANET096_WUI_PROGRESS_BAR)
+        this->renderProgressBarWidget(this->main_widget.progress_bar_ui);
 }
 
 void Planet096Scene::render() {
@@ -379,4 +382,10 @@ void Planet096Scene::renderScrollaleTextWidget(Planet096ScrollableText* scrollab
         PLANET096_WHITE
     );
     this->display.display();
+
+    scrollableTextUI->hasRendered();
+}
+
+void Planet096Scene::renderProgressBarWidget(Planet096ProgressBar* progressBarUI) {
+    progressBarUI->hasRendered();
 }

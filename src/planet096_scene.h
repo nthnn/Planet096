@@ -77,6 +77,7 @@ private:
 
     void renderTextWidget(Planet096Text* textUI);
     void renderScrollaleTextWidget(Planet096ScrollableText* scrollableTextUI);
+    void renderProgressBarWidget(Planet096ProgressBar* progressBarUI);
 };
 
 #endif

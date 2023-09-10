@@ -1,15 +1,18 @@
 #ifndef PLANET096_WIDGET_H
 #define PLANET096_WIDGET_H
 
+#include <planet096_ui_progress_bar.h>
 #include <planet096_ui_scrollable_text.h>
 #include <planet096_ui_text.h>
 
 #define PLANET096_WUI_NONE              0x00
 #define PLANET096_WUI_TEXT              0x01
 #define PLANET096_WUI_SCROLLABLE_TEXT   0x02
+#define PLANET096_WUI_PROGRESS_BAR      0x03
 
 typedef struct _Planet096Widget {
     uint8_t widget_type;
+    Planet096ProgressBar* progress_bar_ui;
     Planet096ScrollableText* scrollable_text_ui;
     Planet096Text* text_ui;
 
@@ -32,6 +35,13 @@ static Planet096Widget createWidget(Planet096Text* textUI) {
 static Planet096Widget createWidget(Planet096ScrollableText* scrollableTextUI) {
     Planet096Widget widget(PLANET096_WUI_SCROLLABLE_TEXT);
     widget.scrollable_text_ui = scrollableTextUI;
+
+    return widget;
+}
+
+static Planet096Widget createWidget(Planet096ProgressBar* progressBarUI) {
+    Planet096Widget widget(PLANET096_WUI_PROGRESS_BAR);
+    widget.progress_bar_ui = progressBarUI;
 
     return widget;
 }
