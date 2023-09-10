@@ -1,5 +1,4 @@
 #include <planet096.h>
-#include <PortaMob.h>
 
 void app() {
     pinMode(2, INPUT_PULLUP);
@@ -23,7 +22,7 @@ void app() {
             scrollableText.scrollDown();
             delay(1000);
         }
-        else if (digitalRead(3) == LOW) {
+        else if(digitalRead(3) == LOW) {
             scrollableText.scrollUp();
             delay(500);
         }
