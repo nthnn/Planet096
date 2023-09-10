@@ -316,6 +316,9 @@ void Planet096Scene::renderTextWidget(Planet096Text* textUI) {
 }
 
 void Planet096Scene::renderScrollaleTextWidget(Planet096ScrollableText* scrollableTextUI) {
+    if(!scrollableTextUI->isVisible())
+        return;
+
     char* text = scrollableTextUI->getText();
     int slen = strlen(text), length = (slen / 19) + ((slen % 19) != 0 ? 1 : 0);
 
@@ -360,7 +363,7 @@ void Planet096Scene::renderScrollaleTextWidget(Planet096ScrollableText* scrollab
 
     int viewport = 0;
     if(scrollableTextUI->getScrollPosition() != 0)
-        viewport = scrollableTextUI->getScrollPosition() * rows;
+        viewport = scrollableTextUI->getScrollPosition() * (rows - 1);
 
     for(int i = viewport - 1, j = 0; i <= rows; i++, j++) {
         if(i >= length || (scrollableTextUI->getScrollPosition() == 0 && i == rows))
@@ -381,11 +384,49 @@ void Planet096Scene::renderScrollaleTextWidget(Planet096ScrollableText* scrollab
         4, thumb,
         PLANET096_WHITE
     );
-    this->display.display();
 
+    this->display.display();
     scrollableTextUI->hasRendered();
 }
 
 void Planet096Scene::renderProgressBarWidget(Planet096ProgressBar* progressBarUI) {
+    uint8_t initial_value = progressBarUI->getValue(),
+        value = map(
+            initial_value,
+            progressBarUI->getMin(),
+            progressBarUI->getMax(),
+            0, 100
+        ), direction = progressBarUI->getDirection(),
+        x = progressBarUI->getX(),
+        y = progressBarUI->getY(),
+        width = progressBarUI->getWidth(),
+        height = progressBarUI->getHeight();
+
+    this->display.drawRect(x, y, width, height, PLANET096_WHITE);
+    if(initial_value != 0 && progressBarUI->getOrientation() == PLANET096_PROGRESS_BAR_VERTICAL) {
+        uint8_t progress = map(value, 0, 100, y, y + height);
+
+        switch(direction) {
+            case PLANET096_PROGRESS_BAR_BOTTOM_TOP:
+                this->display.fillRect(
+                    x, y + (height - progress),
+                    width, progress,
+                    PLANET096_WHITE
+                );
+                break;
+
+            default:
+                break;
+        }
+    }
+    else switch(direction) {
+        case PLANET096_PROGRESS_BAR_LEFT_RIGHT:
+            break;
+        
+        default:
+            break;
+    }
+
+    this->display.display();
     progressBarUI->hasRendered();
 }

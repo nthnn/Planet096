@@ -88,15 +88,6 @@ uint8_t Planet096ProgressBar::getValue() {
     return this->value;
 }
 
-void Planet096ProgressBar::setInverted(bool inverted) {
-    this->inverted = inverted;
-    this->invalidate();
-}
-
-bool Planet096ProgressBar::isInverted() {
-    return this->inverted;
-}
-
 void Planet096ProgressBar::hasRendered() {
     this->has_rendered = true;
 }

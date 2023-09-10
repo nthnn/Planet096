@@ -47,17 +47,13 @@ public:
     void setValue(uint8_t value);
     uint8_t getValue();
 
-    void setInverted(bool inverted);
-    bool isInverted();
-
     void hasRendered();
 
 private:
     uint8_t x, y, width, height;
     uint8_t min, max, value;
     uint8_t orientation, direction;
-    bool inverted = false,
-        has_rendered = false;
+    bool has_rendered = false;
 
     Planet096Scene *scene;
 
