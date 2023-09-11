@@ -429,6 +429,11 @@ void Planet096Scene::renderProgressBarWidget(Planet096ProgressBar* progressBarUI
 
         switch(direction) {
             case PLANET096_PROGRESS_BAR_LEFT_RIGHT:
+                this->display.fillRect(
+                    x, y,
+                    progress, height,
+                    PLANET096_WHITE
+                );
                 break;
 
             default:
