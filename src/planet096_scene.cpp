@@ -416,6 +416,11 @@ void Planet096Scene::renderProgressBarWidget(Planet096ProgressBar* progressBarUI
                 break;
 
             default:
+                this->display.fillRect(
+                    x, y,
+                    width, progress,
+                    PLANET096_WHITE
+                );
                 break;
         }
     }
