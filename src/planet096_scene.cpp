@@ -424,12 +424,21 @@ void Planet096Scene::renderProgressBarWidget(Planet096ProgressBar* progressBarUI
                 break;
         }
     }
-    else switch(direction) {
-        case PLANET096_PROGRESS_BAR_LEFT_RIGHT:
-            break;
-        
-        default:
-            break;
+    else {
+        uint8_t progress = map(value, 0, 100, x, x + width);
+
+        switch(direction) {
+            case PLANET096_PROGRESS_BAR_LEFT_RIGHT:
+                break;
+
+            default:
+                this->display.fillRect(
+                    x + (width - progress), y,
+                    progress, height,
+                    PLANET096_WHITE
+                );
+                break;
+        }
     }
 
     this->display.display();
