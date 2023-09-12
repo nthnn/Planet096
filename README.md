@@ -4,6 +4,8 @@
 </p>
 
 ![Arduino CI](https://github.com/nthnn/Planet096/actions/workflows/arduino_ci.yml/badge.svg) ![Arduino Lint](https://github.com/nthnn/Planet096/actions/workflows/arduino_lint.yml/badge.svg)
+![Arduino Release](https://img.shields.io/badge/Library%20Manager-None-red?logo=Arduino)
+[![License: LGPL3.0](https://img.shields.io/badge/License-LGPL3.0-yellow.svg)](https://github.com/nthnn/Planet096/blob/main/LICENSE)
 
 Planet096 is an Arduino library designed to simplify the creation of graphical user interfaces (GUIs) on monochromatic OLED displays utilizing the SSD1306 driver. This library provides a flexible framework for constructing scenes and drawing various interactive widgets, enabling users to develop intuitive user interfaces even within the constrained resources of these displays.
 
