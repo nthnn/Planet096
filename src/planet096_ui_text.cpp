@@ -88,7 +88,16 @@ Planet096Color Planet096Text::getForegroundColor() {
     return this->fg_color;
 }
 
+bool Planet096Text::isUpdated() {
+    bool is_updated = this->is_updated;
+    this->is_updated = !is_updated;
+
+    return is_updated;
+}
+
 void Planet096Text::invalidate() {
-    if(this->has_rendered)
+    if(this->has_rendered) {
+        this->is_updated = false;
         this->scene->renderWidget();
+    }
 }

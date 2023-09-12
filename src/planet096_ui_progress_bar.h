@@ -62,6 +62,7 @@ public:
     void setValue(uint8_t value);
     uint8_t getValue();
 
+    bool isUpdated();
     void hasRendered();
 
 private:
@@ -69,7 +70,8 @@ private:
     uint8_t min = 0, max = 100, value = 0;
     uint8_t orientation = PLANET096_PROGRESS_BAR_HORIZONTAL,
         direction = PLANET096_PROGRESS_BAR_LEFT_RIGHT;
-    bool has_rendered = false;
+    bool has_rendered = false,
+        is_updated = true;
 
     Planet096Scene *scene;
 

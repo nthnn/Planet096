@@ -89,7 +89,16 @@ int Planet096ScrollableText::maxScroll() {
     return this->max_scroll;
 }
 
+bool Planet096ScrollableText::isUpdated() {
+    bool is_updated = this->is_updated;
+    this->is_updated = !is_updated;
+
+    return is_updated;
+}
+
 void Planet096ScrollableText::invalidate() {
-    if(this->has_rendered)
+    if(this->has_rendered) {
+        this->is_updated = false;
         this->scene->renderWidget();
+    }
 }

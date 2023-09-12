@@ -33,6 +33,7 @@ public:
     void maxScroll(int max_scroll);
     int maxScroll();
 
+    bool isUpdated();
     void hasRendered();
 
 private:
@@ -41,6 +42,7 @@ private:
     Planet096Color bg_color = PLANET096_BLACK,
         fg_color = PLANET096_WHITE;
     bool is_visible = true,
+        is_updated = true,
         has_rendered = false;
 
     Planet096Scene *scene;

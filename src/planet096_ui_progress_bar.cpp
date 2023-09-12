@@ -129,6 +129,13 @@ uint8_t Planet096ProgressBar::getValue() {
     return this->value;
 }
 
+bool Planet096ProgressBar::isUpdated() {
+    bool is_updated = this->is_updated;
+    this->is_updated = !is_updated;
+
+    return is_updated;
+}
+
 void Planet096ProgressBar::hasRendered() {
     this->has_rendered = true;
 }
