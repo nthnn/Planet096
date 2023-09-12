@@ -437,8 +437,8 @@ void Planet096Scene::renderProgressBarWidget(Planet096ProgressBar* progressBarUI
 
             default:
                 this->display.fillRect(
-                    x + (width - progress), y,
-                    progress, height,
+                    x + width - (progress - x), y,
+                    progress - x, height,
                     PLANET096_WHITE
                 );
                 break;
