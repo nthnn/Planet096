@@ -7,6 +7,47 @@ Planet096ProgressBar::Planet096ProgressBar():
 Planet096ProgressBar::Planet096ProgressBar(Planet096Scene *scene):
     scene(scene) { }
 
+Planet096ProgressBar::Planet096ProgressBar(
+    Planet096Scene *scene,
+    int x, int y
+): scene(scene),
+    x(x),
+    y(y) { }
+
+Planet096ProgressBar::Planet096ProgressBar(
+    Planet096Scene *scene,
+    int min, int max, int value
+): scene(scene),
+    value(value) {
+    this->min = min;
+    this->max;
+}
+
+Planet096ProgressBar::Planet096ProgressBar(
+    Planet096Scene *scene,
+    int x, int y,
+    int width, int height
+): scene(scene),
+    x(x),
+    y(y),
+    width(width),
+    height(height) { }
+
+Planet096ProgressBar::Planet096ProgressBar(
+    Planet096Scene *scene,
+    int x, int y,
+    int width, int height,
+    int min, int max, int value
+): scene(scene),
+    x(x),
+    y(y),
+    width(width),
+    height(height),
+    value(value) {
+    this->min = min;
+    this->max = max;
+}
+
 void Planet096ProgressBar::setX(uint8_t x) {
     this->x = x;
     this->invalidate();

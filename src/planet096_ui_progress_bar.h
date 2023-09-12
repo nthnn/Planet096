@@ -19,6 +19,21 @@ class Planet096ProgressBar {
 public:
     Planet096ProgressBar();
     Planet096ProgressBar(Planet096Scene *scene);
+    Planet096ProgressBar(Planet096Scene *scene, int x, int y);
+    Planet096ProgressBar(Planet096Scene *scene, int min, int max, int value);
+
+    Planet096ProgressBar(
+        Planet096Scene *scene,
+        int x, int y,
+        int width, int height
+    );
+
+    Planet096ProgressBar(
+        Planet096Scene *scene,
+        int x, int y,
+        int width, int height,
+        int min, int max, int value
+    );
 
     void setX(uint8_t x);
     uint8_t getX();
@@ -50,9 +65,10 @@ public:
     void hasRendered();
 
 private:
-    uint8_t x, y, width, height;
-    uint8_t min, max, value;
-    uint8_t orientation, direction;
+    uint8_t x = 0, y = 0, width = 50, height = 10;
+    uint8_t min = 0, max = 100, value = 0;
+    uint8_t orientation = PLANET096_PROGRESS_BAR_HORIZONTAL,
+        direction = PLANET096_PROGRESS_BAR_LEFT_RIGHT;
     bool has_rendered = false;
 
     Planet096Scene *scene;
