@@ -262,7 +262,7 @@ void Planet096Scene::renderMenu() {
 }
 
 void Planet096Scene::renderWidget() {
-    if(this->appbar_style == PLANET096_APPBAR_NONE &&
+    /*if(this->appbar_style == PLANET096_APPBAR_NONE &&
         this->scene_menu_style == PLANET096_SCENE_MENU_NONE)
         this->display.fillRect(0, 0, 128, 64, BLACK);
     else if(this->appbar_style != PLANET096_APPBAR_NONE &&
@@ -271,11 +271,13 @@ void Planet096Scene::renderWidget() {
     else if(this->appbar_style == PLANET096_APPBAR_NONE &&
         this->scene_menu_style != PLANET096_SCENE_MENU_NONE)
         this->display.fillRect(0, 0, 128, 52, BLACK);
-    else this->display.fillRect(0, 10, 128, 42, BLACK);
+    else this->display.fillRect(0, 10, 128, 42, BLACK);*/
 
-    if(this->main_widget.text_ui != nullptr)
+    if(this->main_widget.text_ui != nullptr &&
+        this->main_widget.text_ui->isUpdated())
         this->renderTextWidget(this->main_widget.text_ui);
-    if(this->main_widget.scrollable_text_ui != nullptr)
+    if(this->main_widget.scrollable_text_ui != nullptr &&
+        this->main_widget.scrollable_text_ui->isUpdated())
         this->renderScrollaleTextWidget(this->main_widget.scrollable_text_ui);
     if(this->main_widget.progress_bar_ui != nullptr)
         this->renderProgressBarWidget(this->main_widget.progress_bar_ui);
@@ -395,7 +397,7 @@ void Planet096Scene::renderProgressBarWidget(Planet096ProgressBar* progressBarUI
             0, 100
         ), direction = progressBarUI->getDirection(),
         x = progressBarUI->getX(),
-        y = progressBarUI->getY(),
+        y = progressBarUI->getY() + (this->getAppbarStyle() != PLANET096_APPBAR_NONE ? 11 : 0),
         width = progressBarUI->getWidth(),
         height = progressBarUI->getHeight();
 
@@ -421,14 +423,14 @@ void Planet096Scene::renderProgressBarWidget(Planet096ProgressBar* progressBarUI
                 break;
         }
     }
-    else {
+    else if(initial_value != 0) {
         uint8_t progress = map(value, 0, 100, x, x + width);
 
         switch(direction) {
             case PLANET096_PROGRESS_BAR_LEFT_RIGHT:
                 this->display.fillRect(
                     x, y,
-                    progress, height,
+                    progress - x, height,
                     PLANET096_WHITE
                 );
                 break;
