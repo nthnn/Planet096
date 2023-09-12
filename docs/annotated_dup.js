@@ -7,6 +7,7 @@ var annotated_dup =
     [ "License", "index.html#autotoc_md4", null ],
     [ "_Planet096Widget", "struct__Planet096Widget.html", "struct__Planet096Widget" ],
     [ "Planet096App", "classPlanet096App.html", null ],
+    [ "Planet096ProgressBar", "classPlanet096ProgressBar.html", "classPlanet096ProgressBar" ],
     [ "Planet096Scene", "classPlanet096Scene.html", "classPlanet096Scene" ],
     [ "Planet096ScrollableText", "classPlanet096ScrollableText.html", "classPlanet096ScrollableText" ],
     [ "Planet096Text", "classPlanet096Text.html", "classPlanet096Text" ]

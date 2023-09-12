@@ -7,6 +7,7 @@ var classPlanet096ScrollableText =
     [ "getScrollPosition", "classPlanet096ScrollableText.html#a9f46e69e1ee360c50ce6db6990543b84", null ],
     [ "getText", "classPlanet096ScrollableText.html#a17f4c941107c4fc9826d46dd0bab3ed0", null ],
     [ "hasRendered", "classPlanet096ScrollableText.html#af49a5407289922b95b80e6ef4cf3869c", null ],
+    [ "isUpdated", "classPlanet096ScrollableText.html#ad4de249d9432dbeadc262749782c42b3", null ],
     [ "isVisible", "classPlanet096ScrollableText.html#a67a16ed2e97f738e61ff07d6c3f6168b", null ],
     [ "maxScroll", "classPlanet096ScrollableText.html#acecf1b85cd97f4f66b433d864cd5fc63", null ],
     [ "maxScroll", "classPlanet096ScrollableText.html#a483d149254994103a349893a1c3ce3d9", null ],
