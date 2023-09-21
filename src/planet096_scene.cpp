@@ -3,6 +3,7 @@
 
 #include <planet096_app.h>
 #include <planet096_scene.h>
+#include <planet096_ui_image.h>
 #include <planet096_ui_progress_bar.h>
 #include <planet096_ui_scrollable_text.h>
 #include <planet096_ui_text.h>
@@ -279,8 +280,12 @@ void Planet096Scene::renderWidget() {
     if(this->main_widget.scrollable_text_ui != nullptr &&
         this->main_widget.scrollable_text_ui->isUpdated())
         this->renderScrollaleTextWidget(this->main_widget.scrollable_text_ui);
-    if(this->main_widget.progress_bar_ui != nullptr)
+    if(this->main_widget.progress_bar_ui != nullptr &&
+        this->main_widget.progress_bar_ui->isUpdated())
         this->renderProgressBarWidget(this->main_widget.progress_bar_ui);
+    if(this->main_widget.image_ui != nullptr &&
+        this->main_widget.image_ui->isUpdated())
+        this->renderImageWidget(this->main_widget.image_ui);
 }
 
 void Planet096Scene::render() {
@@ -447,4 +452,18 @@ void Planet096Scene::renderProgressBarWidget(Planet096ProgressBar* progressBarUI
 
     this->display.display();
     progressBarUI->hasRendered();
+}
+
+void Planet096Scene::renderImageWidget(Planet096Image* imageUI) {
+    this->getDisplay()->drawBitmap(
+        imageUI->getX(),
+        imageUI->getY(),
+        imageUI->getBitmap().bitmap,
+        imageUI->getBitmap().width,
+        imageUI->getBitmap().height,
+        imageUI->getColor()
+    );
+    this->getDisplay()->display();
+
+    imageUI->hasRendered();
 }
