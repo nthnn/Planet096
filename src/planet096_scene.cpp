@@ -263,17 +263,6 @@ void Planet096Scene::renderMenu() {
 }
 
 void Planet096Scene::renderWidget() {
-    /*if(this->appbar_style == PLANET096_APPBAR_NONE &&
-        this->scene_menu_style == PLANET096_SCENE_MENU_NONE)
-        this->display.fillRect(0, 0, 128, 64, BLACK);
-    else if(this->appbar_style != PLANET096_APPBAR_NONE &&
-        this->scene_menu_style == PLANET096_SCENE_MENU_NONE)
-        this->display.fillRect(0, 10, 128, 54, BLACK);
-    else if(this->appbar_style == PLANET096_APPBAR_NONE &&
-        this->scene_menu_style != PLANET096_SCENE_MENU_NONE)
-        this->display.fillRect(0, 0, 128, 52, BLACK);
-    else this->display.fillRect(0, 10, 128, 42, BLACK);*/
-
     if(this->main_widget.text_ui != nullptr &&
         this->main_widget.text_ui->isUpdated())
         this->renderTextWidget(this->main_widget.text_ui);

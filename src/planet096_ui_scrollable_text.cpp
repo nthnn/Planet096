@@ -97,8 +97,6 @@ bool Planet096ScrollableText::isUpdated() {
 }
 
 void Planet096ScrollableText::invalidate() {
-    if(this->has_rendered) {
-        this->is_updated = false;
+    if(this->has_rendered)
         this->scene->renderWidget();
-    }
 }

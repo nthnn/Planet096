@@ -96,8 +96,6 @@ bool Planet096Text::isUpdated() {
 }
 
 void Planet096Text::invalidate() {
-    if(this->has_rendered) {
-        this->is_updated = false;
+    if(this->has_rendered)
         this->scene->renderWidget();
-    }
 }
