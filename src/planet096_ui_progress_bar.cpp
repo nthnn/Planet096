@@ -77,7 +77,7 @@ uint8_t Planet096ProgressBar::getWidth() {
 
 void Planet096ProgressBar::setHeight(uint8_t height) {
     this->height = height;
-    return this->height;
+    this->invalidate();
 }
 
 uint8_t Planet096ProgressBar::getHeight() {

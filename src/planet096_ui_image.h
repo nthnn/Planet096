@@ -31,7 +31,7 @@ public:
 
 private:
     uint8_t x = 0, y = 0;
-    Planet096Color color = WHITE;
+    Planet096Color color = PLANET096_WHITE;
     bool has_rendered = false,
         is_updated = true;
 
